@@ -130,7 +130,9 @@ async function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
     container: '#vp-docsearch',
     navigator: {
       navigate(item) {
-        router.go(item.itemUrl)
+        if (item.itemUrl) {
+          router.go(item.itemUrl)
+        }
       }
     },
     transformItems: (items) => items.map((item) => ({ ...item, url: getRelativePath(item.url) })),
