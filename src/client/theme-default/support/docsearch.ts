@@ -285,3 +285,12 @@ function deepMerge<T>(target: T, source: Partial<T>): T {
   delete result.locales
   return result
 }
+
+export function getRelativePath(
+  url?: string | null,
+  cleanUrls = false
+): string {
+  if (!url) return ''
+  const { pathname, hash } = new URL(url, 'http://localhost')
+  return pathname.replace(/\.html$/, cleanUrls ? '' : '.html') + hash
+}
